@@ -4,7 +4,8 @@
   "description": "Express server designed to proxy requests to authenticated Cloud Run function",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node proxy.js"
   },
   "keywords": [],
   "author": "George Kemp",
