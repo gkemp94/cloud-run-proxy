@@ -7,11 +7,13 @@ const { PORT = 8080, TARGET } = process.env;
 let token;
 
 const refreshToken = async () => {
+  console.log(`[Proxy] Fetching Token`);
   const { data } = await axios.get(`http://metadata/computeMetadata/v1/instance/service-accounts/default/identity?audience=${TARGET}`, {
     headers: {
       'Metadata-Flavor': 'Google'
     }
   });
+  console.log(`[Proxy] Fetched Token`);
   token = data;
 }
 
