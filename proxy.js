@@ -26,7 +26,7 @@ const getConfig = async () => {
       'Metadata-Flavor': 'Google'
     }
   });
-
+  console.log(config);
   config = typeof data === 'object' ? data : JSON.parse(data);
   console.log(config);
 };
