@@ -43,7 +43,7 @@ app.get('/proxy/health', (_, res) => {
   setInterval(getTokens, 1.8e+6);
   config.forEach(({ target, path }) => {
     console.log(path);
-    app.use(`/${path}`, createProxyMiddleware({
+    app.use(createProxyMiddleware(`/${path}`, {
       target,
       pathRewrite: path !== '*' ? {
         [`^/${path}`]: '/',
