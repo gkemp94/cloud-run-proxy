@@ -21,6 +21,12 @@ const getTokens = async () => {
 
 const getConfig = async () => {
   console.log(`[Proxy] Fetching Config`);
+  const { data } = await axios.get(`http://metadata/computeMetadata/v1/instance/attributes/`, {
+    headers: {
+      'Metadata-Flavor': 'Google'
+    }
+  });
+  console.log(data);
   const { data } = await axios.get(`http://metadata/computeMetadata/v1/instance/attributes/proxyconfig`, {
     headers: {
       'Metadata-Flavor': 'Google'
