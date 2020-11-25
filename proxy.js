@@ -39,7 +39,7 @@ app.get('/proxy/health', (_, res) => {
   res.status(200).send();
 });
 
-(() => {
+(async () => {
   await getConfig();
   await getTokens();
   setInterval(getTokens, 1.8e+6);
