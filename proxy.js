@@ -15,7 +15,7 @@ const getTokens = async () => {
         'Metadata-Flavor': 'Google'
       }
     });
-    token[target] = data;
+    tokens[target] = data;
   });
 };
 
