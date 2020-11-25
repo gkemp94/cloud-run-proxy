@@ -21,20 +21,12 @@ const getTokens = async () => {
 
 const getConfig = async () => {
   console.log(`[Proxy] Fetching Config`);
-  const { data: test } = await axios.get(`http://metadata/computeMetadata/v1/instance/attributes/`, {
-    headers: {
-      'Metadata-Flavor': 'Google'
-    }
-  });
-  console.log(test);
   const { data } = await axios.get(`http://metadata/computeMetadata/v1/instance/attributes/proxyconfig`, {
     headers: {
       'Metadata-Flavor': 'Google'
     },
   });
-  console.log(data);
   config = typeof data === 'object' ? data : JSON.parse(data);
-  console.log(config);
 };
 
 app.get('/proxy/config', (_, res) => {
@@ -51,10 +43,9 @@ app.get('/proxy/health', (_, res) => {
   setInterval(getTokens, 1.8e+6);
   config.forEach(({ target, path }) => {
     app.use(path, createProxyMiddleware({
-      target: target,
+      target,
       pathRewrite: path !== '*' ? {
-        // Remove Base Path
-        [`^/${path}/`]: '/',
+        [`^/${path}`]: '/',
       } : undefined,
       changeOrigin: true,
       onProxyReq: async function (proxyReq) {
@@ -65,5 +56,5 @@ app.get('/proxy/health', (_, res) => {
 })();
 
 app.listen(PORT, () => {
-  console.log(`Application Listening on ${PORT}`);
+  console.log(`[Proxy] Application Listening on ${PORT}`);
 });
