@@ -30,9 +30,9 @@ const getConfig = async () => {
   const { data } = await axios.get(`http://metadata/computeMetadata/v1/instance/attributes/proxyconfig`, {
     headers: {
       'Metadata-Flavor': 'Google'
-    }
+    },
   });
-  console.log(config);
+  console.log(data);
   config = typeof data === 'object' ? data : JSON.parse(data);
   console.log(config);
 };
