@@ -31,7 +31,7 @@ const getConfig = async () => {
   console.log(config);
 };
 
-app.send('/proxy/config', (_, res) => {
+app.get('/proxy/config', (_, res) => {
   res.send(config)
 });
 
